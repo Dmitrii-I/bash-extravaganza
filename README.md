@@ -1,4 +1,6 @@
-bash-scripts-for-real-yo
+bash-extravaganza
 ========================
 
-Some very simple bash scripts because why type all the time?
+bash scripts for various purposes.
+
+

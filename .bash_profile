@@ -10,5 +10,5 @@ fi
 PATH=$PATH:$HOME/bin
 
 export PATH
-bind TAB:menu-complete
+bind TAB:menu-complete # this allows you to cycle through autocompletion options
 

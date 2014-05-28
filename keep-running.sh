@@ -25,7 +25,7 @@ while true; do
         echo -ne "$timestamp\t" >> $LOG
         echo -ne "keep-running.sh\tInstance #$COUNTER of $CMD_TO_RUN quit. Starting new instance\n" >> $LOG
         # bonus: send an email to ourselves 
-        # echo "keep-running.sh: $CMD_TO_RUN has stopped. It has been started again." | ssmtp root &
+        echo "keep-running.sh: $CMD_TO_RUN has stopped. It has been started again." | ssmtp root &
         let "COUNTER=COUNTER+1"        
 done &> /dev/null
 ) &

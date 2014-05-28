@@ -5,7 +5,7 @@
 # We do not want open files because they may still be written to.
 
 host=$1
-files_to_fetch=$(ssh dima@$host '
+files_to_fetch=$(ssh $host '
         all_data_files=$(ls -1 ~/bitstamp-recorder/*bitstamp_data*)
         for file in $all_data_files; do
                 num_file_handles=$(/usr/sbin/lsof -f -- $file | wc -l)

@@ -14,6 +14,10 @@ dir="$2"
 pattern="$3"
 
 echo "$dir/$pattern"
+
+
+# Note the peculiar single quotes... we want the local bash to substitute only
+# $host, $dir and $pattern, while other substitutions should be on remote host
 files_to_download=$(ssh $host '
         all_files=$(ls -1 '$dir/$pattern')
         for file in $all_files; do

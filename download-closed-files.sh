@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# This script fetches files from a remote server that are closed. Closed
+# This script downloads files from a remote server that are closed. Closed
 # is defined as not appearing in the list when lsof command is run.
 #
 # Arguments: remote host name, directory on the remote host to look in

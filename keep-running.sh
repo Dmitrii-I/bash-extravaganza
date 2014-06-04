@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# This script is a lazy man's daemon with no extra facilities: just run the program forever
+# This script is a lazy man's daemon: just run the program forever
 # and that is it. If the program exits, wait 3 seconds and start it again. Some basic 
 # logging is done, so we are not totally lazy. To daemonize the program that
 # has to run forever, put the braces around it and end with ampersand. This trick

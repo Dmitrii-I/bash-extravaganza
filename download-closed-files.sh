@@ -26,7 +26,7 @@ files_to_download=$(ssh $host '
         done
 ')
 
-echo Going to fetch these files:
+echo Going to download these files:
 echo "$files_to_download"
 
 for file in $files_to_download; do

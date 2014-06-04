@@ -1,6 +1,6 @@
-bash-extravaganza
+bash-scripts
 ========================
 
-bash scripts for various purposes.
+Bash scripts for various purposes.
 
 

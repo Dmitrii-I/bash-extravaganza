@@ -12,3 +12,7 @@ alias ll='ls -alh --color=auto'
 PATH=$PATH:$HOME/.local/bin:$HOME/bin
 export PATH
 
+
+export TERM=xterm-256color
+eval `dircolors ~/dircolors-solarized/dircolors.ansi-dark`
+

@@ -22,3 +22,5 @@ export PATH
 export TERM=xterm-256color
 eval `dircolors ~/dircolors-solarized/dircolors.ansi-dark`
 
+source ~/bash-scripts/libbash-generic.sh
+

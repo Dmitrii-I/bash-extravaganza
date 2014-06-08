@@ -1,5 +1,11 @@
 # .bash_profile is loaded for login shells only
 
+if [ -f ~/.bashrc ]; then
+        . ~/.bashrc
+fi
+
+
+
 # this allows you to cycle through autocompletion instead of typing
 bind TAB:menu-complete 
 

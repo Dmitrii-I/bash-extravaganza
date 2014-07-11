@@ -24,3 +24,6 @@ eval `dircolors ~/dircolors-solarized/dircolors.ansi-dark`
 
 source ~/bash-scripts/libbash-generic.sh
 
+# easier grepping through processes
+function psgrep() { ps axuf | grep -v grep | grep "$@" -i --color=auto; } 
+

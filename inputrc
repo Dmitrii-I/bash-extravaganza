@@ -1,0 +1,4 @@
+# allows you to type couple characters and press arrow up to find the first
+# match. Same for arrow down.
+"\e[A":history-search-backward
+"\e[B":history-search-forward

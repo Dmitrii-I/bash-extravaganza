@@ -24,3 +24,5 @@ source ~/bash-scripts/lib-bash-generic.sh
 # easier grepping through processes
 function psgrep() { ps axuf | grep -v grep | grep "$@" -i --color=auto; } 
 
+echo "Custom bashrc has been loaded"
+

@@ -22,7 +22,7 @@ export PATH
 export TERM=xterm-256color
 eval `dircolors ~/dircolors-solarized/dircolors.ansi-dark`
 
-source ~/bash-scripts/libbash-generic.sh
+source ~/bash-scripts/lib-bash-generic.sh
 
 # easier grepping through processes
 function psgrep() { ps axuf | grep -v grep | grep "$@" -i --color=auto; } 

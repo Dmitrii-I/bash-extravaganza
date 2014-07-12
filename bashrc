@@ -9,13 +9,10 @@ source ~/bash-scripts/lib-bash-generic.sh
 # interactive shells only:
 
 if is_interactive_shell; then 
-        echo yes
-else 
-        echo "no"
+        # this allows you to cycle through autocompletion instead of typing
+        bind TAB:menu-complete 
 fi
 
-# this allows you to cycle through autocompletion instead of typing
-bind TAB:menu-complete 
 
 # set custom bash prompt
 export PS1="\[\e[00;35m\]\u\[\e[0m\]\[\e[00;37m\]@\[\e[0m\]\[\e[00;35m\]\H\[\e[0m\]\[\e[00;37m\]:\[\e[0m\]\[\e[00;36m\]\w\[\e[0m\]\[\e[00;37m\]\\$ \[\e[0m\]"

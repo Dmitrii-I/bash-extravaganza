@@ -2,6 +2,13 @@
 # .bash_profile is loaded for login shells
 # we use .bashrc only to ensure that a file is always loaded no matter the shell type
 
+source ~/bash-scripts/lib-bash-generic.sh
+
+
+
+# interactive shells only:
+
+if is_interactive_shell == "TRUE"; then echo yes; else echo "no"; fi
 
 # this allows you to cycle through autocompletion instead of typing
 bind TAB:menu-complete 
@@ -19,7 +26,6 @@ export PATH
 export TERM=xterm-256color
 eval `dircolors ~/dircolors-solarized/dircolors.ansi-dark`
 
-source ~/bash-scripts/lib-bash-generic.sh
 
 # easier grepping through processes
 function psgrep() { ps axuf | grep -v grep | grep "$@" -i --color=auto; } 

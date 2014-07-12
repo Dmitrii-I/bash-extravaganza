@@ -1,4 +1,7 @@
-# .bash_profile is loaded for login shells only
+# .bashrc is loaded for interactive and non-interactive shell (unless you prevent it)
+# .bash_profile is loaded for login shells
+# we use .bashrc only to ensure that a file is always loaded no matter the shell type
+
 
 # this allows you to cycle through autocompletion instead of typing
 bind TAB:menu-complete 

@@ -12,6 +12,10 @@ is_login_shell() {
 	else echo FALSE; fi
 }
 
+is_interactive_shell() {
+        [ -z "$PS1" ] && echo FALSE || echo TRUE
+}
+
 closed_files() {
         # pattern should be between double quotes to prevent too early processing of meta-characters like *
         dir=${1:-.}

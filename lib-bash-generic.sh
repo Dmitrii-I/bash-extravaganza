@@ -8,12 +8,11 @@ timestamp() {
 }
 
 is_login_shell() {
-	if shopt -q login_shell; then echo TRUE
-	else echo FALSE; fi
+	if shopt -q login_shell; then return 0; else return 1; fi
 }
 
 is_interactive_shell() {
-        [ -z "$PS1" ] && echo FALSE || echo TRUE
+        [ -z "$PS1" ] && return 1 || return 0
 }
 
 closed_files() {

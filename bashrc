@@ -8,7 +8,11 @@ source ~/bash-scripts/lib-bash-generic.sh
 
 # interactive shells only:
 
-if is_interactive_shell == "TRUE"; then echo yes; else echo "no"; fi
+if is_interactive_shell; then 
+        echo yes
+else 
+        echo "no"
+fi
 
 # this allows you to cycle through autocompletion instead of typing
 bind TAB:menu-complete 

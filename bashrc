@@ -2,6 +2,9 @@
 # .bash_profile is loaded for login shells
 # we use .bashrc only to ensure that a file is always loaded no matter the shell type
 
+PATH=$PATH:/usr/sbin:$HOME/.local/bin:$HOME/bin
+export PATH
+
 source ~/bash-scripts/lib-bash-generic.sh
 
 
@@ -20,8 +23,6 @@ export PS1="\[\e[00;35m\]\u\[\e[0m\]\[\e[00;37m\]@\[\e[0m\]\[\e[00;35m\]\H\[\e[0
 
 alias ll='ls -lh --color=auto'
 
-PATH=$PATH:$HOME/.local/bin:$HOME/bin
-export PATH
 
 
 export TERM=xterm-256color

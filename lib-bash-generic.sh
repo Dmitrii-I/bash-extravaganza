@@ -47,6 +47,14 @@ download_files() {
 }
 
 
+append()
+{
+        postfix="$1"
+        while read -t 3 line; do
+                echo "$line$postfix"
+        done
+}
+
 prepend() {
         prefix="$1"
         while read -t 3 line; do

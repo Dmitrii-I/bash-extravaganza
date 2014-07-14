@@ -33,7 +33,11 @@ closed_files() {
         # pattern should be between double quotes to prevent too early processing of meta-characters like *
         dir=${1:-.}
         pattern=${2:-*}
-        all_files=$(find $dir -maxdepth 1 -type f -name "$pattern" | xargs -L1 basename)
+        all_files=$(find $dir -maxdepth 1 -type f -name "$pattern")
+
+        # If there are no matched files, exit successfully, otherwise proceed
+        [ -z "$all_files" ] && return 0 || all_files=$(echo "$all_files" | xargs -L1 basename)
+
         for file in $all_files; do
                 num_file_handles=$(lsof -f -- $dir/$file | wc -l)
                 [ $num_file_handles -lt 1 ] && echo $file

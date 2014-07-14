@@ -3,6 +3,13 @@
 # Bash library containing generic functions
 
 
+# Aliases
+alias newline_to_space='tr "\n" " "'
+
+
+
+# Functions
+
 timestamp() {
 	date +"%Y-%m-%d %H:%M:%S.%N"
 }
@@ -45,7 +52,7 @@ s() {
         source ~/bash-scripts/lib-bash-generic.sh
 }
 
-log_info() 
+write_log() 
 {
         # This function reads the variables $log, $script_name,
         # and $@ (all the arguments passed to it). It then 

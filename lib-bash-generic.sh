@@ -41,5 +41,17 @@ prepend() {
 }
 
 s() {
+        # This function sources this script
         source ~/bash-scripts/lib-bash-generic.sh
+}
+
+log_info() 
+{
+        # This function reads the variables $log, $script_name,
+        # and $@ (all the arguments passed to it). It then 
+        # constructs a tab-delimited one-line message and appends
+        # it to $log.
+        ts=$(timestamp)
+        logmsg="$ts\tINFO\t$script_name\t$@\n"
+        echo -ne "$logmsg" >> $log
 }

@@ -10,6 +10,13 @@ alias newline_to_space='tr "\n" " "'
 
 # Functions
 
+newline_to_space2() 
+{
+        while read line; do  echo -n "$line "; done
+}
+
+
+
 timestamp() {
 	date +"%Y-%m-%d %H:%M:%S.%N"
 }

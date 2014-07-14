@@ -22,7 +22,7 @@ closed_files() {
         all_files=$(find $dir -maxdepth 1 -type f -name "$pattern" | xargs -L1 readlink -f)                                                 
         for file in $all_files; do
                 num_file_handles=$(lsof -f -- $file | wc -l)
-                if [ $num_file_handles -lt 1 ]; then echo $file; fi
+                [ $num_file_handles -lt 1 ] && echo $file
         done
 }
 

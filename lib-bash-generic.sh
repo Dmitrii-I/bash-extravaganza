@@ -26,10 +26,10 @@ closed_files() {
 
         # If there are no matched files, exit successfully, otherwise proceed
         [ -z "$all_files" ] && return 0 || all_files=$(echo "$all_files" | xargs -L1 basename)
-
+	echo "$all_files"
         for file in $all_files; do
                 num_file_handles=$(lsof -f -- $dir/$file | wc -l)
-                [ $num_file_handles -lt 1 ] && echo $file
+		if [ $num_file_handles -lt 1 ]; then echo $file; fi
         done
 }
 

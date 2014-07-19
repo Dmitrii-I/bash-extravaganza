@@ -2,6 +2,9 @@
 
 # Bash library containing generic functions
 
+# todo
+# function to insert thousand separator into numbers
+
 
 
 # Functions

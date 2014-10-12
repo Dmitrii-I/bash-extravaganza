@@ -14,6 +14,13 @@ is_login_shell() {
 	if shopt -q login_shell; then return 0; else return 1; fi
 }
 
+is_empty() {
+        # Returns true if its one and only argument is empty
+        # Example usage: x=""; if is_empty $x; then echo empty; else echo not empty; fi
+        [ -z "$1" ] && return 0 || return 1
+}
+
+
 is_interactive_shell() {
         [ -z "$PS1" ] && return 1 || return 0
 }

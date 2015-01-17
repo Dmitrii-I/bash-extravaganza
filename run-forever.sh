@@ -1,21 +1,23 @@
 #!/bin/bash
 
-# This script is a lazy man's daemon: just run the program forever
-# and that is it. If the program exits, wait 3 seconds and start it again. Some basic 
-# logging is done, so we are not totally lazy. To daemonize the program that
-# has to run forever, put the braces around it and end with ampersand. This trick
-# is explained here: 
+# This script is a lazy man's daemon: it makes sure some program is run forever.
+# If the program exits, wait 3 seconds and start it again. If it exits again
+# wait again 3 secons and start again, and so on. 
+# To daemonize the program that has to run forever, put the braces around it
+# and end with ampersand. This trick is explained here: 
 # http://stackoverflow.com/questions/3430330/best-way-to-make-a-shell-script-daemon
+#
 # The daemonized program will run under parent PID of this script, while this script
 # will have parent PID 1.
 #
-# Arguments: a command/script/program that should run forever. 
-#
+# Arguments: a program to run forever and its optional arguments.
+
 # Example usage: 
-# ./keep-running.sh python ./script-that-needs-to-run-forever.py somearg1 somearg2
+# ./run-forever.sh python ./script-that-needs-to-run-forever.py somearg1 somearg2
 #
-# Note that it is important that you refer to the script that needs to be run forever with
-# a relative path if it is not in your $PATH.
+# IMPORTANT: you need to refer to the program  that needs to be run forever with
+# a relative path if it is not in your $PATH. If programs arguments contain
+# paths, take care as well.
 #
 # To stop running forever, simply kill this script and the program
 

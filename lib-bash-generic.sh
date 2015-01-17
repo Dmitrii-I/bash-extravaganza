@@ -79,3 +79,8 @@ write_log()
         logmsg="$ts\tINFO\t$script_name\t$@\n"
         echo -ne "$logmsg" >> $log
 }
+
+date_sequence()
+{
+    now=`date +"%Y-%m-%d" -d "2014-08-01"` ; end=`date +"%Y-%m-%d" -d "2014-12-07"`; while [ "$now" != "$end" ] ; do now=`date +"%Y-%m-%d" -d "$now + 1 day"`;  echo "$now"; done
+}

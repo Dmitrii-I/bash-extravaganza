@@ -31,3 +31,24 @@ eval `dircolors ~/dircolors-solarized/dircolors.ansi-dark`
 
 # easier grepping through processes
 function psgrep() { ps axuf | grep -v grep | grep "$@" -i --color=auto; } 
+
+
+# enable bash completion in interactive shells
+if ! shopt -oq posix; then
+ if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
+
+# do not store consecutive duplicates
+export HISTCONTROL=ignoredups
+# keep only unique commands:
+#export HISTCONTROL=erasedups
+# number of lines to save for a session
+export HISTSIZE=9999
+# number of most recent lines to keep in history file (default: .bash_hsitory)
+export HISTFILESIZE=999999
+# keep history in sync accross all sessions:
+#export PROMPT_COMMAND="history -a; history -c; history -r; ${PROMPT_COMMAND}"

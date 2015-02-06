@@ -21,7 +21,7 @@ fi
 
 
 # set custom bash prompt
-export PS1="\[\e[00;35m\]\u\[\e[0m\]\[\e[00;37m\]@\[\e[0m\]\[\e[00;35m\]\H\[\e[0m\]\[\e[00;37m\]:\[\e[0m\]\[\e[00;36m\]\w\[\e[0m\]\[\e[00;37m\]\\$ \[\e[0m\]"
+export PS1="\[\e[00;35m\]\u\[\e[0m\]\[\e[00;37m\]@\[\e[0m\]\[\e[00;35m\]\h\[\e[0m\]\[\e[00;37m\]:\[\e[0m\]\[\e[00;36m\]\w\[\e[0m\]\[\e[00;37m\]\\$ \[\e[0m\]"
 
 
 alias ll='ls -lh --color=auto'
@@ -36,6 +36,14 @@ eval `dircolors ~/dircolors-solarized/dircolors.ansi-dark`
 function psgrep() { ps axuf | grep -v grep | grep "$@" -i --color=auto; } 
 
 
+# enable bash completion in interactive shells
+if ! shopt -oq posix; then
+ if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
 
 # do not store consecutive duplicates
 export HISTCONTROL=ignoredups

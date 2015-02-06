@@ -7,6 +7,9 @@ export PATH
 
 source ~/bash-scripts/lib-bash-generic.sh
 
+# load stuff needed on local machine only
+source ~/.bashrc_local
+
 
 
 # interactive shells only:

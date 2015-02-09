@@ -7,8 +7,6 @@ export PATH
 
 source ~/bash-scripts/lib-bash-generic.sh
 
-# load stuff needed on local machine only
-source ~/.bashrc_local
 
 
 
@@ -55,3 +53,10 @@ export HISTSIZE=9999
 export HISTFILESIZE=999999
 # keep history in sync accross all sessions:
 #export PROMPT_COMMAND="history -a; history -c; history -r; ${PROMPT_COMMAND}"
+
+
+
+
+
+# load stuff needed on local machine only
+source ~/.bashrc_local # this should be on the very last line

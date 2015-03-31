@@ -31,3 +31,11 @@ eval `dircolors ~/dircolors-solarized/dircolors.ansi-dark`
 
 # easier grepping through processes
 function psgrep() { ps axuf | grep -v grep | grep "$@" -i --color=auto; } 
+
+
+# history settings:
+HISTCONTROL=erasedups
+HISTSIZE=5000
+HISTFILESIZE=100000
+# append history
+shopt -s histappend

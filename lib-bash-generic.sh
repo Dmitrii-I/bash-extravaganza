@@ -64,11 +64,11 @@ s() {
 
 write_log() 
 {
-        # This function reads the variables $log, $script_name,
+        # This function reads global variables $LOG, $SCRIPT_NAME,
         # and $@ (all the arguments passed to it). It then 
         # constructs a tab-delimited one-line message and appends
-        # it to $log.
+        # it to $LOG.
         ts=$(timestamp)
-        logmsg="$ts\tINFO\t$script_name\t$@\n"
-        echo -ne "$logmsg" >> $log
+        logmsg="$ts\tINFO\t$SCRIPT_NAME\t$@\n"
+        echo -ne "$logmsg" >> $LOG
 }

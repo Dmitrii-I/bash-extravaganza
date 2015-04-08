@@ -1,13 +1,44 @@
 #!/bin/bash
 
-# Bash library containing generic functions
+# Some generic bash functions I use daily
 
-# todo
+# To do:
 # function to insert thousand separator into numbers
 
-
-
 # Functions
+dates_sequence() {
+    # Generate a sequence of dates, separated by space, starting with date_from
+    # and ending with date_until (so date_until is inclusive).
+    # Usage: dates_sequence <date_from> <date_until> [<date_format>] 
+    # Arguments:
+    # date_from     first date of the sequence
+    # date_until    last date of the sequence
+    # date_format   optional format string for the date, suitable for
+    #               input to `date`. Default is %Y-%m-%d
+    #
+    # Usage: 
+    # dates_sequence 2014-01-01 2014-02-13
+    # dates_sequence 2014-01-01 2014-02-13 %Y %m %d
+    # dates_sequence 2014-01-01 2014-02-13 "%Y %m %d"
+
+    # For convenience, the dates within this function are in
+    # integer format %Y%m%d
+    date_from=$(date -d "$1" +%Y%m%d)
+    date_until=$(date -d "$2" +%Y%m%d)
+
+    shift
+    shift
+    date_format=${@:-"%Y-%m-%d"}
+
+    if [ $date_until -gt $date_from ]; then
+        while [ $date_from != $date_until ]; do 
+            date -d "$date_from" +"$date_format"
+            date_from=$(date -d "$date_from + 1 day" +%Y%m%d)
+        done
+        date -d "$date_until" +"$date_format"
+    fi
+}
+
 
 timestamp() {
 	date +"%Y-%m-%d %H:%M:%S.%N"
@@ -78,9 +109,4 @@ write_log()
         ts=$(timestamp)
         logmsg="$ts\tINFO\t$SCRIPT_NAME\t$@\n"
         echo -ne "$logmsg" >> $LOG
-}
-
-date_sequence()
-{
-    now=`date +"%Y-%m-%d" -d "2014-08-01"` ; end=`date +"%Y-%m-%d" -d "2014-12-07"`; while [ "$now" != "$end" ] ; do now=`date +"%Y-%m-%d" -d "$now + 1 day"`;  echo "$now"; done
 }

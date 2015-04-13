@@ -5,7 +5,22 @@
 # To do:
 # function to insert thousand separator into numbers
 
+
+# Set some global variables. Note, they may overwrite existing ones:
+
+
+
+
 # Functions
+date_yesterday() {
+    # This function returns yesterday's date, e.g. 2015-04-01 on 2015-04-02
+    # All arguments (optional), are interpreted as format specification for date
+    date_format=${@:-"%Y-%m-%d"}
+    date -d "$(date +%Y-%m-%d) - 1 day" +$date_format
+}
+
+
+
 dates_sequence() {
     # Generate a sequence of dates, separated by space, starting with date_from
     # and ending with date_until (so date_until is inclusive).
@@ -30,12 +45,12 @@ dates_sequence() {
     shift
     date_format=${@:-"%Y-%m-%d"}
 
-    if [ $date_until -gt $date_from ]; then
+    if [ $date_until -ge $date_from ]; then
+        date -d "$date_from" +"$date_format"
         while [ $date_from != $date_until ]; do 
-            date -d "$date_from" +"$date_format"
             date_from=$(date -d "$date_from + 1 day" +%Y%m%d)
+            date -d "$date_from" +"$date_format"
         done
-        date -d "$date_until" +"$date_format"
     fi
 }
 

@@ -1,17 +1,20 @@
 #!/bin/bash
 
-# Some generic bash functions I use daily
+detect_broken_symlinks() {
+    # Detect broken symlinks, not recursing into directories
+    # Arguments: a directory
 
-# To do:
-# function to insert thousand separator into numbers
+    # Exit function if no directory supplied
+    [ "$#" -lt 1 ] && { echo "Please supply a directory"; return; }
+
+    dir="$@"        
+
+    for f in $(ls -1 "$dir"); do 
+        [ ! -e "$dir/$f" ]  && echo Broken symlink: "$dir/$f"
+    done
+}
 
 
-# Set some global variables. Note, they may overwrite existing ones:
-
-
-
-
-# Functions
 date_yesterday() {
     # This function returns yesterday's date, e.g. 2015-04-01 on 2015-04-02
     # All arguments (optional), are interpreted as format specification for date

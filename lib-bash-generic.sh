@@ -1,7 +1,7 @@
 #!/bin/bash
 
 detect_broken_symlinks() {
-    # Detect broken symlinks, not recursing into directories
+    # Detect broken symlinks, recursing into directories
     # Arguments: a directory
 
     # Exit function if no directory supplied
@@ -9,8 +9,8 @@ detect_broken_symlinks() {
 
     dir="$@"        
 
-    for f in $(ls -1 "$dir"); do 
-        [ ! -e "$dir/$f" ]  && echo Broken symlink: "$dir/$f"
+    for f in $(find "$dir" -type l); do 
+        [ ! -e "$f" ]  && echo Broken symlink: "$f"
     done
 }
 

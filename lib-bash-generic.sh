@@ -3,6 +3,7 @@
 # Environment variables set by this script are prepended with _LBG_ to avoid
 # potentially overwriting existent ones.
 
+
 traffic_tic() {
     # set the environment variables _LBG_RX_BYTES and _LBG_TX_BYTES
     # Arguments: optional, network device, defaults to eth0
@@ -55,7 +56,6 @@ date_yesterday() {
 }
 
 
-
 dates_sequence() {
     # Generate a sequence of dates, separated by space, starting with date_from
     # and ending with date_until (so date_until is inclusive).
@@ -94,9 +94,11 @@ timestamp() {
 	date +"%Y-%m-%d %H:%M:%S.%N"
 }
 
+
 is_login_shell() {
 	if shopt -q login_shell; then return 0; else return 1; fi
 }
+
 
 is_empty() {
         # Returns true if its one and only argument is empty
@@ -108,6 +110,7 @@ is_empty() {
 is_interactive_shell() {
         [ -z "$PS1" ] && return 1 || return 0
 }
+
 
 closed_files() {
         # pattern should be between double quotes to prevent too early processing of meta-characters like *
@@ -123,6 +126,7 @@ closed_files() {
         done
 }
 
+
 download_files() {
         while read -t 3 line; do
                 scp -C "$line" .
@@ -130,13 +134,13 @@ download_files() {
 }
 
 
-append()
-{
+append() {
         postfix="$1"
         while read -t 3 line; do
                 echo "$line$postfix"
         done
 }
+
 
 prepend() {
         prefix="$1"
@@ -145,13 +149,14 @@ prepend() {
         done
 }
 
+
 s() {
         # This function sources this script
         source ~/bash-scripts/lib-bash-generic.sh
 }
 
-write_log() 
-{
+
+write_log() {
         # This function reads global variables $LOG, $SCRIPT_NAME,
         # and $@ (all the arguments passed to it). It then 
         # constructs a tab-delimited one-line message and appends

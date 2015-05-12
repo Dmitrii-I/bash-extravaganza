@@ -1,5 +1,37 @@
 #!/bin/bash
 
+# Environment variables set by this script are prepended with _LBG_ to avoid
+# potentially overwriting existent ones.
+
+traffic_tic() {
+    # set the environment variables _LBG_RX_BYTES and _LBG_TX_BYTES
+    # Arguments: optional, network device, defaults to eth0
+    _LBG_NET_DEVICE=${@:-"eth0"}
+    _LBG_RX_BYTES_TIC=$(cat /sys/class/net/"$_LBG_NET_DEVICE"/statistics/rx_bytes)
+    _LBG_TX_BYTES_TIC=$(cat /sys/class/net/"$_LBG_NET_DEVICE"/statistics/tx_bytes)
+}
+
+
+traffic_toc() {
+    # Print MB sent and received since last call to traffic_tic
+    _LBG_RX_BYTES_TOC=$(cat /sys/class/net/"$_LBG_NET_DEVICE"/statistics/rx_bytes)
+    _LBG_TX_BYTES_TOC=$(cat /sys/class/net/"$_LBG_NET_DEVICE"/statistics/tx_bytes)
+
+    mb_sent=$(echo "($_LBG_TX_BYTES_TOC - $_LBG_TX_BYTES_TIC) / 1024^2" | bc)
+    mb_received=$(echo "($_LBG_RX_BYTES_TOC - $_LBG_RX_BYTES_TIC) / 1024^2" | bc)
+    
+    echo "MB sent: $mb_sent; MB recieved: $mb_received"
+}
+
+
+dec2hex() {
+    # Convert decimal integer to hexadecimal integer
+    # Prepend 0 to achieve minimum fields width of 2 characters
+    decimal_integer="$1"
+    printf "%.2x\n" $decimal_integer
+}
+
+
 detect_broken_symlinks() {
     # Detect broken symlinks, recursing into directories
     # Arguments: a directory

@@ -96,20 +96,56 @@ timestamp() {
 
 
 is_file_open() {
-    # Returns 0 if file is open, 1 otherwise
+    # Returns 0 if file is open; 1 in all other cases
     # Arguments: full file path, no tildes
+    #
+    # As we are using `lsof` to determine whether file is open, we have these 3 cases:
+    # 1. `lsof` exit code: 0 and output to stdout
+    # 2. `lsof` exit code: 1 and no output to stdout
+    # 3. `lsof` exit code: 1 and output to stderr
+    # Case 1 occurs when file is open. Case 2 occurs when file exists and is not open.
+    # Case 3 occurs when something went wrong and `lsof` failed.
+    # In this function we want to return 0 only if case 1 occured, and return 1 if
+    # case 2 or case 3 occurred.
+
     file_path="$1"
-    out=$(lsof -f -- $file_path)
-    [ -z "$out" ] && return 1 || return 0
+    lsof_output=$(lsof -f -- $file_path 2>&1)
+    exit_code_lsof=$?
+    
+    if [ $exit_code_lsof -eq 0 ]; then
+        return 0
+    else
+        return 1
+    fi
 }
 
 
 is_file_closed() {
-    # Returns 1 if file is open, 0 otherwise
+    # Returns 0 if file is closed; 1 in all other cases
     # Arguments: full file path, no tildes
+    #
+    # As we are using `lsof` to determine whether file is open, we have these 3 cases:
+    # 1. `lsof` exit code: 0 and output to stdout
+    # 2. `lsof` exit code: 1 and no output to stdout
+    # 3. `lsof` exit code: 1 and output to stderr
+    # Case 1 occurs when file is open. Case 2 occurs when file exists and is not open.
+    # Case 3 occurs when something went wrong and `lsof` failed.
+    # In this function we want to return 0 only if case 2 occured, and 1 if
+    # case 1 or case 3 occurred.
+
     file_path="$1"
-    out=$(lsof -f -- $file_path)
-    [ -z "$out" ] && return 0 || return 1
+    lsof_output=$(lsof -f -- $file_path 2>&1)
+    exit_code_lsof=$?
+    
+    if [ $exit_code_lsof -eq 0 ]; then
+        return 1
+    else
+        if [ -z "$lsof_output" ]; then
+            return 0;
+        else
+            return 1;
+        fi
+    fi
 }
 
 

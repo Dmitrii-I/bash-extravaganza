@@ -95,6 +95,24 @@ timestamp() {
 }
 
 
+is_file_open() {
+    # Returns 0 if file is open, 1 otherwise
+    # Arguments: full file path, no tildes
+    file_path="$1"
+    out=$(lsof -f -- $file_path)
+    [ -z "$out" ] && return 1 || return 0
+}
+
+
+is_file_closed() {
+    # Returns 1 if file is open, 0 otherwise
+    # Arguments: full file path, no tildes
+    file_path="$1"
+    out=$(lsof -f -- $file_path)
+    [ -z "$out" ] && return 0 || return 1
+}
+
+
 is_login_shell() {
 	if shopt -q login_shell; then return 0; else return 1; fi
 }

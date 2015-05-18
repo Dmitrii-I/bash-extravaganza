@@ -37,13 +37,12 @@ detect_broken_symlinks() {
     # Detect broken symlinks, recursing into directories
     # Arguments: a directory
 
+    dir="$@"
     # Exit function if no directory supplied
     [ "$#" -lt 1 ] && { echo "Please supply a directory"; return; }
 
-    dir="$@"        
-
     for f in $(find "$dir" -type l); do 
-        [ ! -e "$f" ]  && echo Broken symlink: "$f"
+        [ ! -e "$f" ]  && echo Broken symlink: "$f" || echo "OK $f"
     done
 }
 

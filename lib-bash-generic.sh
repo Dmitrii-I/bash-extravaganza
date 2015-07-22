@@ -4,6 +4,14 @@
 # potentially overwriting existent ones.
 
 
+numcols() {
+    # Returns number of columns/fields in a tab-delimited file and the number of lines
+    # with that particular number of columns.
+    file="$1"
+    awk '{print gsub(/\t/, "")}' $file | sort | uniq -c
+}
+
+
 traffic_tic() {
     # set the environment variables _LBG_RX_BYTES and _LBG_TX_BYTES
     # Arguments: optional, network device, defaults to eth0

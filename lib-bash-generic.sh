@@ -8,7 +8,13 @@ numcols() {
     # Returns number of columns/fields in a tab-delimited file and the number of lines
     # with that particular number of columns.
     file="$1"
-    awk '{print gsub(/\t/, "")}' $file | sort | uniq -c
+    if [ $(mimetype -b $file) = "application/x-gzip" ]; then
+        # add one because we are counting number of separators, but need fields
+        zcat $file | awk '{print gsub(/\t/, "") + 1}' | sort | uniq -c
+    else
+        # add one because we are counting number of separators, but need fields
+        awk '{print gsub(/\t/, "") + 1}' $file | sort | uniq -c
+    fi
 }
 
 

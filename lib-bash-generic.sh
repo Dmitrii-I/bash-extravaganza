@@ -56,7 +56,7 @@ detect_broken_symlinks() {
     [ "$#" -lt 1 ] && { echo "Please supply a directory"; return; }
 
     for f in $(find "$dir" -type l); do 
-        [ ! -e "$f" ]  && echo Broken symlink: "$f" || echo "OK $f"
+        [ ! -e "$f" ]  && echo "ERROR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Broken symlink: $f" || echo "OK $f"
     done
 }
 
@@ -229,6 +229,6 @@ write_log() {
         # constructs a tab-delimited one-line message and appends
         # it to $LOG.
         ts=$(timestamp)
-        logmsg="$ts\t$SCRIPT_NAME\t$@\n"
+        logmsg="$ts\t$@\n"
         echo -ne "$logmsg" >> $LOG
 }

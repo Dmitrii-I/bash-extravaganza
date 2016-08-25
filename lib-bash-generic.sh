@@ -229,6 +229,6 @@ write_log() {
         # constructs a tab-delimited one-line message and appends
         # it to $LOG.
         ts=$(timestamp)
-        logmsg="$ts\tINFO\t$SCRIPT_NAME\t$@\n"
+        logmsg="$ts\t$SCRIPT_NAME\t$@\n"
         echo -ne "$logmsg" >> $LOG
 }

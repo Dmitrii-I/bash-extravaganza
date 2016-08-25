@@ -9,19 +9,16 @@ source ~/bash-scripts/lib-bash-generic.sh
 
 # interactive shells only:
 
+echo "loaded bashrc on dw"
+is_interactive_shell && echo interactive || echo noninteractive
+
 if is_interactive_shell; then 
         # this allows you to cycle through autocompletion instead of typing
         bind TAB:menu-complete 
+        source ~/.bashrc_local_interactive
 fi
 
-
-# set custom bash prompt
-export PS1="\[\e[00;35m\]\u\[\e[0m\]\[\e[00;37m\]@\[\e[0m\]\[\e[00;35m\]\h\[\e[0m\]\[\e[00;37m\]:\[\e[0m\]\[\e[00;36m\]\w\[\e[0m\]\[\e[00;37m\]\\$ \[\e[0m\]"
-
-
 alias ll='ls -lh --color=auto'
-
-
 
 export TERM=xterm-256color
 eval `dircolors ~/dircolors-solarized/dircolors.ansi-dark`

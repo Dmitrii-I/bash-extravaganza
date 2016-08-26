@@ -47,9 +47,9 @@ export HISTCONTROL=ignoredups
 # keep only unique commands:
 #export HISTCONTROL=erasedups
 # number of lines to save for a session
-export HISTSIZE=9999
+export HISTSIZE=999999
 # number of most recent lines to keep in history file (default: .bash_hsitory)
-export HISTFILESIZE=999999
+export HISTFILESIZE=9999999
 # keep history in sync accross all sessions:
 #export PROMPT_COMMAND="history -a; history -c; history -r; ${PROMPT_COMMAND}"
 

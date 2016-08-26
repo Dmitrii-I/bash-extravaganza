@@ -7,15 +7,10 @@ export PATH
 
 source ~/bash-scripts/lib-bash-generic.sh
 
-# interactive shells only:
-
-echo "loaded bashrc on dw"
-is_interactive_shell && echo interactive || echo noninteractive
-
 if is_interactive_shell; then 
         # this allows you to cycle through autocompletion instead of typing
         bind TAB:menu-complete 
-        source ~/.bashrc_local_interactive
+        [ -e ~/.bashrc_local_interactive ] && source ~/.bashrc_local_interactive
 fi
 
 alias ll='ls -lh --color=auto'

@@ -56,7 +56,7 @@ detect_broken_symlinks() {
     [ "$#" -lt 1 ] && { echo "Please supply a directory"; return; }
 
     for f in $(find "$dir" -type l); do 
-        [ ! -e "$f" ]  && echo "ERROR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Broken symlink: $f" || echo "OK $f"
+        [ ! -e "$f" ]  && echo "ERROR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Broken symlink: $f" >&2 || echo "OK $f"
     done
 }
 
